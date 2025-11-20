@@ -1,0 +1,27 @@
+import requests
+import time
+
+channel_id = "1254818859823927418"  # اكتب ID القناة
+auth_token = "NTY0OTk3MDA0NDIyMjgzMjk0.G2yqHp.KUSgmVaiHe65EyJlLp_OnFNXx9X3UN5pZpTTsk"  # اكتب التوكن حقك
+message_text = "شسمه اني اريد اقلك انه انته زلمة لازمله حضن وحنان من بنية تحبه تهتم له وانت لازملك تحب نفسك مب لازم تكره نفسك هواية اني اهمين احبك يازنديقي ياكافر"  # الرسالة اللي تبيها
+interval_seconds = 2 # 10 دقائق
+
+headers = {
+    "Authorization": auth_token
+}
+
+while True:
+    for _ in range(2):  # نرسل الرسالة مرتين
+        try:
+            payload = {"content": message_text}
+            requests.post(
+                f"https://discord.com/api/v9/channels/{channel_id}/messages",
+                headers=headers,
+                json=payload
+            )
+            print(f"Message sent: {message_text}")
+        except Exception as e:
+            print(f"Error: {e}")
+        time.sleep(0)  # تأخير بسيط بين الرسالتين (1 ثانية مثلاً)
+
+    time.sleep(interval_seconds)  # ننتظر 10 دقائق قبل الدورة التالية
